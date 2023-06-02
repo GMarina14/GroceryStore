@@ -9,9 +9,10 @@ import java.util.Collection;
 @Service
 @Scope("prototype")
 public interface GroceryService {
-   // public void addGrocery(Collection<Integer> array);
+    public void addGrocery(Collection<Integer> array);
+
     public void addProduct(int productId);
+
     public Collection<Basket> getGroceryList();
-    //public void addSimpleGrocery(int[] array);
 
 }

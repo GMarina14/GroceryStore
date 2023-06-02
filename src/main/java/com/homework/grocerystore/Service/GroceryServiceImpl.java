@@ -16,14 +16,14 @@ import java.util.List;
 //@Scope("prototype")
 @SessionScope
 public class GroceryServiceImpl implements GroceryService {
-   private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     ArrayList<Basket> groceryBasket = new ArrayList<>(List.of());
 
     public GroceryServiceImpl(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
-    /*@Override
+    @Override
     public void addGrocery(Collection<Integer> array) {
         if (array.size() != 0) {
             for (Integer integer : array) {
@@ -31,30 +31,24 @@ public class GroceryServiceImpl implements GroceryService {
                 groceryBasket.add(basket);
             }
         }
-    }*/
-   /* @Override
-    public void addSimpleGrocery(int[] array){
-        for (int j : array) {
-            Basket basket = new Basket(j);
-            groceryBasket.add(basket);
-        }
-    }*/
+    }
+
 
     @Override
-    public void addProduct(int productId){
+    public void addProduct(int productId) {
         Basket basket = new Basket(productId);
         groceryBasket.add(basket);
     }
 
-
-     @PostConstruct
-     public void init() throws JsonProcessingException{
+    @PostConstruct
+    public void init() throws JsonProcessingException {
         getGroceryList(groceryBasket);
-     }
+    }
 
-     public void getGroceryList(Collection<Basket> list) throws JsonProcessingException {
-         System.out.println(objectMapper.writeValueAsString(list));
-     }
+    public void getGroceryList(Collection<Basket> list) throws JsonProcessingException {
+        System.out.println(objectMapper.writeValueAsString(list));
+    }
+
     @Override
     public Collection<Basket> getGroceryList() {
         return Collections.unmodifiableList(groceryBasket);

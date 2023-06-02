@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 public class GroceryController {
@@ -16,21 +18,11 @@ public class GroceryController {
         this.groceryService = groceryService;
     }
 
-
-   /* @GetMapping(path = "/add")
-    public void addGrocery(@RequestParam("productId") int productId,
-                           @RequestParam(value = "productId2", required = false) int productId2,
-                           @RequestParam(value = "productId3", required = false) int productId3) {
-        int [] array = {productId, productId2, productId3};
-
-        //ArrayList<Integer> array = new ArrayList<>(List.of(productId, productId2, productId3));
-
-        groceryService.addSimpleGrocery(array);
-    }*/
-    @GetMapping(path = "/add")
-    public void addGrocery(@RequestParam("productId") int productId) {
-        groceryService.addProduct(productId);
+    @RequestMapping(path = "/add")
+    public void addGrocery(@RequestParam List<Integer> product) {
+        groceryService.addGrocery(product);
     }
+
     @GetMapping(path = "/get")
     public ResponseEntity<?> getTheList() {
         if (groceryService.getGroceryList().isEmpty()) {
